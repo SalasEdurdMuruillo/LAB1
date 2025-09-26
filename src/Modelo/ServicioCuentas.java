@@ -1,0 +1,68 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package Modelo;
+
+import java.util.List;
+
+/**
+ *
+ * @author Luisf
+ */
+public class ServicioCuentas {
+    private static final String PrefijoBanco = "123";
+    private static long consecutivo = 1L;
+    private final IGestorCuentas gestor;
+    
+    public ServicioCuentas(IGestorCuentas gestor) {
+        this.gestor = gestor;
+    }
+    
+    private String generarNumeroCuenta() {
+        String consecutivoStr = String.format("%014d", consecutivo++);
+        return PrefijoBanco + consecutivoStr;
+    }
+    
+    public Cuenta crearCuenta(Cliente titular, Moneda moneda) {
+        String numero = generarNumeroCuenta();
+        Cuenta cuenta = new Cuenta(numero, titular, moneda);
+        gestor.guardar(cuenta);
+        return cuenta;
+    }
+    
+    public void depositar(String numeroCuenta, double monto) {
+        if (monto <= 0) throw new IllegalArgumentException("Monto Invalido");
+        Cuenta cuenta = gestor.buscar(numeroCuenta);
+        if (cuenta == null) throw new IllegalArgumentException("Cuenta no encontrada");
+        if (!cuenta.isActiva()) throw new IllegalStateException("Cuenta inactiva");
+
+        cuenta.setSaldo(cuenta.getSaldo() + monto);
+        gestor.actualizar(cuenta);
+    }
+    
+    public void retirar(String numeroCuenta, double monto) {
+        if (monto <= 0) throw new IllegalArgumentException("Monto Invalido");
+        Cuenta cuenta = gestor.buscar(numeroCuenta);
+        if (cuenta == null) throw new IllegalArgumentException("Cuenta no encontrada");
+        if (!cuenta.isActiva()) throw new IllegalStateException("Cuenta inactiva");
+        if (cuenta.getSaldo() < monto) throw new IllegalStateException("Saldo insuficiente");
+
+        cuenta.setSaldo(cuenta.getSaldo() - monto);
+        gestor.actualizar(cuenta);
+    }
+    
+    public void tranferir(String origen, String destino, double monto) {
+        if (origen.equals(destino)) throw new IllegalArgumentException("Las cuentas deben ser distintas");
+        retirar(origen, monto);
+        depositar(destino, monto);
+    }
+    
+    public List<Cuenta> listar() {
+        return gestor.listar();
+    }
+    
+    public Cuenta buscar(String numeroCuenta) {
+        return gestor.buscar(numeroCuenta);
+    }
+}
