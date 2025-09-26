@@ -16,6 +16,7 @@ import java.util.Objects;
  */
 public class GestorClientesMem implements IGestorClientes {
     private final HashMap<String, Cliente> map;
+    private final List<Cliente> historico;
     private Cliente cliente;
 
     @Override
@@ -25,6 +26,7 @@ public class GestorClientesMem implements IGestorClientes {
     
     public GestorClientesMem() {
         map = new HashMap<>();
+        historico = new ArrayList<>();
         cliente=null;
     }
     
@@ -60,8 +62,13 @@ public class GestorClientesMem implements IGestorClientes {
     @Override
     public Cliente buscar(String id) { 
         Objects.requireNonNull(id, "Id requerido");
-        cliente=map.get(id);
-        return cliente; 
+        Cliente eliminado = map.remove(id);
+        if (eliminado == null){
+            throw new IllegalArgumentException("No existe clinete con id: " + id);
+        }
+        historico.add(eliminado);
+        this.cliente = null;
+        return null;
     }
     
     @Override
@@ -73,5 +80,9 @@ public class GestorClientesMem implements IGestorClientes {
     @Override
     public List<Cliente> listar() {
         return new ArrayList<>(map.values());
+    }
+    
+    public List<Cliente> listarHistorico(){
+        return new ArrayList<>(historico);
     }
 }
