@@ -9,5 +9,16 @@ package Modelo;
  * @author Sebastian
  */
 public enum Moneda {
+    COLONES("Colones"),
+    DOLARES("Dolares");
     
+    private final String moneda;
+    
+    Moneda(String moneda) {
+        this.moneda = moneda;
+    }
+    
+    public String getMoneda() {
+        return moneda;
+    }
 }
