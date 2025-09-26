@@ -16,11 +16,13 @@ import Vista.UtilGui;
  */
 public class FrmClientes extends javax.swing.JInternalFrame implements IVista<Cliente> {
     private ControladorClientes controlador;
+    boolean preferente;
     /**
      * Creates new form FrmClientes
      */
     private FrmClientes() {
         initComponents();
+        
     }
     
     public FrmClientes(ServicioClientes servicio) {
@@ -264,7 +266,7 @@ public class FrmClientes extends javax.swing.JInternalFrame implements IVista<Cl
         String nombre = txtNombre.getText();
         String correo = txtCorreo.getText();
         String telefono = txtTelefono.getText();
-        controlador.guardar(id,nombre,correo,telefono);
+        controlador.guardar(id,nombre,correo,telefono,preferente);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -275,7 +277,7 @@ public class FrmClientes extends javax.swing.JInternalFrame implements IVista<Cl
         String id = txtCedula.getText();
         String correo = txtCorreo.getText();
         String telefono = txtTelefono.getText();
-        controlador.actualizar(id, correo, telefono);
+        controlador.actualizar(id, correo, telefono,preferente);
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
