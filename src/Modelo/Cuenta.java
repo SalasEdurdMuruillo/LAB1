@@ -52,4 +52,8 @@ public class Cuenta {
     public boolean isActiva(){
         return activa;
     }
+
+    public void setEstado(String estado) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
