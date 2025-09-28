@@ -21,4 +21,9 @@ public enum Moneda {
     public String getMoneda() {
         return moneda;
     }
+
+    @Override
+    public String toString() {
+        return this.moneda; // Esto asegura que el JComboBox muestre solo "Colones" o "Dolares"
+    }
 }

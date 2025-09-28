@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 public class FrmMain extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmMain.class.getName());
+    private javax.swing.JMenuItem menuCuentas;
 
     /**
      * Creates new form FrmMain
@@ -23,6 +24,15 @@ public class FrmMain extends javax.swing.JFrame {
     public FrmMain() {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        menuCuentas = new javax.swing.JMenuItem("Cuentas"); 
+        menuCuentas.setFont(new java.awt.Font("Segoe UI", 0, 18)); 
+        menuCuentas.addActionListener(evt -> abrirFrmCuenta());
+        menuAdmin.add(menuCuentas);
+    }
+    private void abrirFrmCuenta() { 
+        FrmCuenta frmCuenta = new FrmCuenta(); 
+        this.dtpMenu.add(frmCuenta); 
+        frmCuenta.setVisible(true); 
     }
 
     /**
@@ -88,8 +98,10 @@ public class FrmMain extends javax.swing.JFrame {
         FrmClientes frm = new FrmClientes(servicio);
         this.dtpMenu.add(frm);
         frm.setVisible(true);
+        // agrega el FrmCuenta
     }//GEN-LAST:event_menuClientesActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */

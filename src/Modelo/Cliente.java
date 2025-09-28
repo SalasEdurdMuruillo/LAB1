@@ -34,4 +34,8 @@ public class Cliente {
         this.telefono = Objects.requireNonNull(telefono,"El telefono no puede ser un valor nulo");
         this.preferente = preferente;
     }
+
+    public String getCedula() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

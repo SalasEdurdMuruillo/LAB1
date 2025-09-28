@@ -26,7 +26,8 @@ public class ServicioCuentas {
     
     public Cuenta crearCuenta(Cliente titular, Moneda moneda) {
         String numero = generarNumeroCuenta();
-        Cuenta cuenta = new Cuenta(numero, titular, moneda);
+        String cedula = null;
+        var cuenta = new Cuenta(numero, moneda,cedula, titular);
         gestor.guardar(cuenta);
         return cuenta;
     }
