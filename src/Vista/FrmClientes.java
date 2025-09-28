@@ -16,7 +16,6 @@ import Vista.UtilGui;
  */
 public class FrmClientes extends javax.swing.JInternalFrame implements IVista<Cliente> {
     private ControladorClientes controlador;
-    boolean preferente;
     /**
      * Creates new form FrmClientes
      */
@@ -49,6 +48,7 @@ public class FrmClientes extends javax.swing.JInternalFrame implements IVista<Cl
         txtCorreo = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtTelefono = new javax.swing.JFormattedTextField();
+        jCheckBox1 = new javax.swing.JCheckBox();
         jPanel2 = new javax.swing.JPanel();
         btnNuevo = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
@@ -101,6 +101,9 @@ public class FrmClientes extends javax.swing.JInternalFrame implements IVista<Cl
         }
         txtTelefono.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
+        jCheckBox1.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        jCheckBox1.setText("Preferente");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -116,10 +119,10 @@ public class FrmClientes extends javax.swing.JInternalFrame implements IVista<Cl
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(747, 747, 747))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(284, 284, 284)
+                                .addComponent(jCheckBox1))
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
@@ -128,7 +131,7 @@ public class FrmClientes extends javax.swing.JInternalFrame implements IVista<Cl
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 10, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,7 +139,8 @@ public class FrmClientes extends javax.swing.JInternalFrame implements IVista<Cl
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(jCheckBox1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -241,7 +245,7 @@ public class FrmClientes extends javax.swing.JInternalFrame implements IVista<Cl
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,10 +267,13 @@ public class FrmClientes extends javax.swing.JInternalFrame implements IVista<Cl
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         String id = txtCedula.getText();
+        id = id.trim().replace(" ", ""); 
         String nombre = txtNombre.getText();
         String correo = txtCorreo.getText();
         String telefono = txtTelefono.getText();
-        controlador.guardar(id,nombre,correo,telefono,preferente);
+        telefono = telefono.trim().replace(" ", "");
+        boolean esPreferente = jCheckBox1.isSelected();
+        controlador.guardar(id,nombre,correo,telefono,esPreferente);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -277,16 +284,26 @@ public class FrmClientes extends javax.swing.JInternalFrame implements IVista<Cl
         String id = txtCedula.getText();
         String correo = txtCorreo.getText();
         String telefono = txtTelefono.getText();
-        controlador.actualizar(id, correo, telefono,preferente);
+        boolean esPreferente = jCheckBox1.isSelected();
+        controlador.actualizar(id, correo, telefono,esPreferente);
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         String id = txtCedula.getText();
+        id = id.trim().replace(" ", "");
         controlador.eliminar(id);
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        controlador.buscar(solicitar("Ingrese el id del cliente", "Buscar Registro"));
+        String id = solicitar("Ingrese el id del cliente", "Buscar Registro");
+    Cliente cliente;  
+        cliente = controlador.buscar(id);
+
+    if (cliente != null) {
+        mostrarDatos(cliente);   
+    } else {
+        mostrarError("Cliente no encontrado con id: " + id);
+    }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtCedulaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCedulaFocusLost
@@ -304,6 +321,7 @@ public class FrmClientes extends javax.swing.JInternalFrame implements IVista<Cl
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnNuevo;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -324,6 +342,7 @@ public class FrmClientes extends javax.swing.JInternalFrame implements IVista<Cl
         this.txtCorreo.setText("");
         this.txtTelefono.setText("");
         txtCedula.requestFocus();
+        this.jCheckBox1.setSelected(false);;
     }
     
     @Override
@@ -338,6 +357,7 @@ public class FrmClientes extends javax.swing.JInternalFrame implements IVista<Cl
         this.txtNombre.setText(cliente.getNombre());
         this.txtCorreo.setText(cliente.getCorreo());
         this.txtTelefono.setText(cliente.getTelefono());
+        this.jCheckBox1.setSelected(cliente.getPreferente());
     }
     
     @Override

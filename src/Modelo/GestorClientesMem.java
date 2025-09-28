@@ -62,13 +62,13 @@ public class GestorClientesMem implements IGestorClientes {
     @Override
     public Cliente buscar(String id) { 
         Objects.requireNonNull(id, "Id requerido");
-        Cliente eliminado = map.remove(id);
-        if (eliminado == null){
+        Cliente clienteEncontrado = map.get(id);
+        if (clienteEncontrado == null){
             throw new IllegalArgumentException("No existe clinete con id: " + id);
         }
-        historico.add(eliminado);
-        this.cliente = null;
-        return null;
+        historico.add(clienteEncontrado);
+        this.cliente = clienteEncontrado;
+        return clienteEncontrado;
     }
     
     @Override

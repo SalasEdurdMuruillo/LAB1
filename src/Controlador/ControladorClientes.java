@@ -4,6 +4,7 @@
  */
 package Controlador;
 
+import Modelo.Cliente;
 import Modelo.ServicioClientes;
 import Vista.IVista;
 
@@ -31,14 +32,25 @@ public class ControladorClientes {
     }
 
     public void actualizar(String id, String correo, String telefono, boolean preferente){
-        try{
-            servicio.actualizar(id,correo,telefono,preferente);
-            vista.mostrarDatos(servicio.buscar(id));
-            vista.mostrarMensaje("El registro actualizado correctamente", "Actualizacion exitosa");
-        }catch(Exception ex){
-            vista.mostrarError(ex.getMessage());
-        }
+         Cliente clienteActual = null;
+     try {
+         clienteActual = servicio.buscar(id); 
+          if (clienteActual.getPreferente() != preferente) {
+              String msg = "El cliente ya existe con el estado Preferente. ¿Desea cambiarlo?";
+              if (!vista.confirmar(msg, "Cambio de Estado Preferente")) return;
+            }
+         servicio.actualizar(id,correo,telefono,preferente);
+         vista.mostrarDatos(servicio.buscar(id));
+         vista.mostrarMensaje("El registro actualizado correctamente", "Actualizacion exitosa");
+        } catch(Exception ex){
+         vista.mostrarError(ex.getMessage()); 
+          if (ex.getMessage().contains("No existe cliente")) { 
+             vista.mostrarError("Error al actualizar: Cliente no encontrado.");
+            } else {
+               vista.mostrarError(ex.getMessage());
+            }
     }
+}
 
     public void eliminar(String id){
         try{
@@ -61,13 +73,19 @@ public class ControladorClientes {
         }
     }
     
-    public void buscar(String id){
-        try {
+    public Cliente buscar(String id){
+        Cliente cliente = null; 
+    try {
+        cliente = servicio.buscar(id); 
+        if (cliente != null) {
             vista.deshabilitarCampos();
-            vista.mostrarDatos(servicio.buscar(id));
-        } catch (Exception ex) {
-            vista.mostrarError(ex.getMessage());
+            vista.mostrarDatos(cliente);
         }
+        
+    } catch (Exception ex) {
+        vista.mostrarError(ex.getMessage());
+    }
+    return cliente;
     }
     
     public void validarIdDisponible(String id){
