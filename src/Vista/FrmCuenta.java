@@ -67,8 +67,6 @@ public class FrmCuenta extends javax.swing.JInternalFrame {
     private void abrirBuscar(){
         javax.swing.JDesktopPane dp = getDesktopPane();
     Vista.FrmBuscar frm = null;
-
-    
     if (dp != null) {
         for (javax.swing.JInternalFrame f : dp.getAllFrames()) {
             if (f instanceof Vista.FrmBuscar) {
@@ -77,8 +75,6 @@ public class FrmCuenta extends javax.swing.JInternalFrame {
             }
         }
     }
-
-   
     if (frm == null) {
         frm = new Vista.FrmBuscar();
         FrmMain menu = (FrmMain) javax.swing.SwingUtilities.getAncestorOfClass(FrmMain.class, this);
@@ -90,11 +86,7 @@ public class FrmCuenta extends javax.swing.JInternalFrame {
             frm.setVisible(true);
         }
     }
-
-    
     try { frm.setVisible(true); frm.setSelected(true); } catch (Exception ignore) {}
-
-   
     try {
         java.lang.reflect.Method m = frm.getClass().getMethod("recargarTabla");
         m.invoke(frm);
