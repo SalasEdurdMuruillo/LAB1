@@ -329,26 +329,28 @@ public class FrmCuenta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void txtMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMenuActionPerformed
-       javax.swing.JDesktopPane dp = getDesktopPane();
-    FrmMovimientos frm = null;
+        javax.swing.JDesktopPane dp = getDesktopPane(); 
+        IFrmMovimientos frm = null;
 
     if (dp != null) {
         for (javax.swing.JInternalFrame f : dp.getAllFrames()) {
-            if (f instanceof FrmMovimientos frmMovimientos) {
-                frm = frmMovimientos; 
-                frm.setSelected(true); 
-                frm.toFront();         
-                break; 
+            if (f instanceof IFrmMovimientos) {
+                frm = (IFrmMovimientos) f;
+                try {
+                    frm.setSelected(true);
+                    frm.toFront();
+                } catch (java.beans.PropertyVetoException e) {
+                    e.printStackTrace();
+                }
+                return; 
             }
         }
+        frm = new IFrmMovimientos();
+        dp.add(frm);
+        frm.setVisible(true);
+    } else {
+        javax.swing.JOptionPane.showMessageDialog(this, "No se encontró el DesktopPane.");
     }
-
-    if (frm == null) {
-        frm = new FrmMovimientos();
-        if (dp != null) dp.add(frm);
-    }
-
-    frm.setVisible(true);
     }//GEN-LAST:event_txtMenuActionPerformed
 
 

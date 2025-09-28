@@ -115,6 +115,11 @@ public class IFrmMovimientos extends javax.swing.JInternalFrame {
         btnBuscar = new javax.swing.JButton();
         btnAceptar = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+
         lblMovi.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblMovi.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMovi.setText("Movimientos");
