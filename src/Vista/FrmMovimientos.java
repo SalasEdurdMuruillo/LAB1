@@ -228,4 +228,8 @@ public class FrmMovimientos extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> txtMovi;
     private javax.swing.JFormattedTextField txtSaldo;
     // End of variables declaration//GEN-END:variables
+
+    void setSelected(boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
