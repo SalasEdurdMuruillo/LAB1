@@ -84,7 +84,7 @@
                               </Group>
                               <Component id="jLabel4" alignment="0" min="-2" pref="62" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="118" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -101,12 +101,8 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel2" min="-2" pref="57" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
-                                  <Component id="jLabel3" min="-2" pref="67" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="txtMenu" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace pref="99" max="32767" attributes="0"/>
                                   <Component id="btnLimpiar" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="btnGuardar" min="-2" max="-2" attributes="0"/>
@@ -114,6 +110,12 @@
                                   <Component id="btnActualizar" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="btnEliminar" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel2" min="-2" pref="57" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                                  <Component id="jLabel3" min="-2" pref="67" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
@@ -152,16 +154,15 @@
                       <Component id="txtNumCuen" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="87" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnBuscar" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="btnGuardar" max="32767" attributes="0"/>
-                              <Component id="btnLimpiar" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="btnEliminar" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="btnBuscar" alignment="0" max="32767" attributes="0"/>
+                      <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="btnGuardar" max="32767" attributes="0"/>
+                          <Component id="btnLimpiar" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="btnActualizar" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnEliminar" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btnActualizar" max="32767" attributes="0"/>
+                      <Component id="txtMenu" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               </Group>
@@ -293,6 +294,21 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizarActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="txtMenu">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI Black" size="12" style="3"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="0" green="0" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Menu"/>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMenuActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

@@ -7,6 +7,7 @@ package Vista;
 import Modelo.GestorClientesMem;
 import Modelo.IGestorClientes;
 import Modelo.ServicioClientes;
+import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 
 /**
@@ -17,6 +18,7 @@ public class FrmMain extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmMain.class.getName());
     private javax.swing.JMenuItem menuCuentas;
+    private JDesktopPane escritorio;
 
     /**
      * Creates new form FrmMain
@@ -34,6 +36,11 @@ public class FrmMain extends javax.swing.JFrame {
         this.dtpMenu.add(frmCuenta); 
         frmCuenta.setVisible(true); 
     }
+    
+    public javax.swing.JDesktopPane getEscritorio() {
+        return this.dtpMenu; 
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -133,4 +140,8 @@ public class FrmMain extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem menuClientes;
     // End of variables declaration//GEN-END:variables
+
+    Object getDesktopPane() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
