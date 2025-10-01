@@ -14,8 +14,21 @@ import java.util.Map;
  * @author Luisf
  */
 public class GestorCuentasMem implements IGestorCuentas {
+    private static GestorCuentasMem instancia;
+    
     private final Map<String, Cuenta> cuentas = new HashMap<>();
 
+    public GestorCuentasMem() {
+        
+    }
+    
+    public static GestorCuentasMem getInstancia() {
+        if (instancia == null) {
+            instancia = new GestorCuentasMem();
+        }
+        return instancia;
+    }
+    
     @Override
     public void guardar(Cuenta cuenta) {
         if (cuentas.containsKey(cuenta.getNumeroCuenta())) {

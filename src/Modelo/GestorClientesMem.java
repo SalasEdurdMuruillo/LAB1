@@ -15,9 +15,18 @@ import java.util.Objects;
  * @author jprod
  */
 public class GestorClientesMem implements IGestorClientes {
+    private static GestorClientesMem instancia;
+    
     private final HashMap<String, Cliente> map;
     private final List<Cliente> historico;
     private Cliente cliente;
+    
+    public static GestorClientesMem getInstancia() {
+        if (instancia == null) {
+            instancia = new GestorClientesMem();
+        }
+        return instancia;
+    }
 
     @Override
     public Cliente ultimoRegistro() {
