@@ -27,7 +27,7 @@ public class Cliente {
     public void setTelefono(String telefono) { this.telefono = Objects.requireNonNull(telefono,"El telefono no puede ser un valor nulo"); }
     public void setPreferente(boolean preferente){this.preferente = preferente;}
     
-    public Cliente(String id, String nombre, String correo, String telefono,boolean preferete) {
+    public Cliente(String id, String nombre, String correo, String telefono,boolean prefenrete) {
         this.id = Objects.requireNonNull(id,"El id no puede ser un valor nulo");
         this.nombre = Objects.requireNonNull(nombre,"El nombre no puede ser un valor nulo");
         this.correo = Objects.requireNonNull(correo,"El correo no puede ser un valor nulo");

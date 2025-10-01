@@ -22,12 +22,13 @@ public class ServicioClientes {
         this.gestor = gestor;
     }
     
-    public void guardar(String id, String nombre, String correo, String telefono, boolean preferente) {
+    public void guardar(FabricaCliente fabrica, String id, String nombre, String correo, String telefono, boolean preferente) {
         validarRequeridos(id, nombre, correo, telefono);
         if (gestor.existe(id)) throw new IllegalArgumentException("Ya existe un registro con id=" + id);
         if (!EMAIL.matcher(correo).matches()) throw new IllegalArgumentException("Formato de correo inválido");
         String nombreFormateado = formatoNombrePropio(nombre);
-        gestor.guardar(new Cliente(id, nombre, correo, telefono, preferente));
+        Cliente cliente = fabrica.crearCliente(id, nombre, correo, telefono);
+        gestor.guardar(cliente);
     }
     
     public void actualizar(String id, String correo, String telefono, boolean preferente) {
