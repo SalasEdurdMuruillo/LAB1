@@ -45,7 +45,7 @@ public class FrmCuenta extends javax.swing.JInternalFrame {
         if (cedula.isEmpty() || nombre.isEmpty() || numeroCuenta.isEmpty()) { 
             throw new IllegalArgumentException("Todos los campos son obligatorios");
         } 
-        Cuenta cuenta = new Cuenta(numeroCuenta, moneda, cedula, titular); 
+        Cuenta cuenta = new Cuenta(numeroCuenta, titular, moneda); 
         cuenta.setEstado(estado); return cuenta; 
     } 
     private void mostrarCuenta(Cuenta cuenta) {

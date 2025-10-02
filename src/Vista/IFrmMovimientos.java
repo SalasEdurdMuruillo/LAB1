@@ -5,6 +5,7 @@
 package Vista;
 
 import Modelo.Cuenta;
+import Modelo.FabricaCuentaColones;
 import Modelo.GestorCuentasMem;
 import Modelo.ServicioCuentas;
 
@@ -21,7 +22,7 @@ public class IFrmMovimientos extends javax.swing.JInternalFrame {
      */
     public IFrmMovimientos() {
         initComponents();
-        servicioCuentas = new ServicioCuentas(new GestorCuentasMem());
+        servicioCuentas = new ServicioCuentas(new GestorCuentasMem(), new FabricaCuentaColones());
         txtMovi.addItem("Depositar");
         txtMovi.addItem("Retirar");
         txtMovi.addItem("Transferir");
