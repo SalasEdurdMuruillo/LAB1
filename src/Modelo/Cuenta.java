@@ -17,7 +17,7 @@ public class Cuenta {
     private boolean activa;
     private final Moneda moneda;
     
-    public Cuenta(String numeroCuenta, Moneda moneda, String cedula, Cliente titular){
+    public Cuenta(String numeroCuenta, Cliente titular, Moneda moneda){
         this.numeroCuenta = numeroCuenta;
         this.titular = Objects.requireNonNull(titular, "Titular requerido");
         this.moneda = Objects.requireNonNull(moneda, "Moneda requerida");

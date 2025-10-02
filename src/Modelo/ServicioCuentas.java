@@ -14,9 +14,11 @@ public class ServicioCuentas {
     private static final String PrefijoBanco = "123";
     private static long consecutivo = 1L;
     private final IGestorCuentas gestor;
+    private final FabricaCuenta fabrica;
     
-    public ServicioCuentas(IGestorCuentas gestor) {
+    public ServicioCuentas(IGestorCuentas gestor, FabricaCuenta fabrica) {
         this.gestor = gestor;
+        this.fabrica = fabrica;
     }
     
     private String generarNumeroCuenta() {
@@ -24,10 +26,9 @@ public class ServicioCuentas {
         return PrefijoBanco + consecutivoStr;
     }
     
-    public Cuenta crearCuenta(Cliente titular, Moneda moneda) {
+    public Cuenta crearCuenta(Cliente titular) {
         String numero = generarNumeroCuenta();
-        String cedula = null;
-        var cuenta = new Cuenta(numero, moneda,cedula, titular);
+        Cuenta cuenta = fabrica.crearCuenta(numero, titular);
         gestor.guardar(cuenta);
         return cuenta;
     }
