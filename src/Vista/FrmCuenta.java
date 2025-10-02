@@ -6,8 +6,12 @@ package Vista;
 
 import Modelo.Cliente;
 import Modelo.Cuenta;
+import Modelo.FabricaCuenta;
+import Modelo.FabricaCuentaColones;
+import Modelo.FabricaCuentaDolares;
 import Modelo.GestorCuentasMem;
 import Modelo.Moneda;
+import Modelo.ServicioCuentas;
 import javax.swing.JOptionPane;
 
 /**
@@ -176,6 +180,13 @@ public class FrmCuenta extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI Emoji", 3, 14)); // NOI18N
         jLabel4.setText("Moneda");
 
+        txtMoneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Colones", "Dolares" }));
+        txtMoneda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMonedaActionPerformed(evt);
+            }
+        });
+
         jLabel5.setFont(new java.awt.Font("Segoe UI Emoji", 3, 14)); // NOI18N
         jLabel5.setText("Numero Cuenta");
 
@@ -277,9 +288,8 @@ public class FrmCuenta extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLimpiar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -317,7 +327,15 @@ public class FrmCuenta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        try { Cuenta cuenta = leerFormulario(); gestor.guardar(cuenta); JOptionPane.showMessageDialog(this, "Cuenta guardada con éxito"); } catch (Exception ex) { JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage()); }
+        String seleccion = txtMoneda.getSelectedItem().toString();
+        FabricaCuenta fabrica;
+        if (seleccion.equals("Colones")){
+            fabrica = new FabricaCuentaColones();
+        } else {
+            fabrica = new FabricaCuentaDolares();
+        }
+        
+        ServicioCuentas serviciocuentas = new ServicioCuentas(new GestorCuentasMem(), fabrica);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
@@ -353,6 +371,9 @@ public class FrmCuenta extends javax.swing.JInternalFrame {
     }
     }//GEN-LAST:event_txtMenuActionPerformed
 
+    private void txtMonedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMonedaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMonedaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
