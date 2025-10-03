@@ -5,6 +5,9 @@
 package Controlador;
 
 import Modelo.Cliente;
+import Modelo.ClienteRegular;
+import Modelo.ClienteVIP;
+import Modelo.FabricaCliente;
 import Modelo.ServicioClientes;
 import Vista.IVista;
 
@@ -21,9 +24,16 @@ public class ControladorClientes {
         this.vista = vista;
     }
     
-    public void guardar(String id,String nombre,String correo, String telefono,boolean preferente){
+    public void guardar(String id, String nombre, String correo, String telefono, boolean preferente){
         try{
-            servicio.guardar(id,nombre,correo, telefono,preferente);
+            FabricaCliente fabrica;
+            if (preferente) {
+                fabrica = new ClienteVIP();
+            } else {
+                fabrica = new ClienteRegular();
+            }
+            
+            servicio.guardar(fabrica, id,nombre,correo, telefono,preferente);
             vista.deshabilitarCampos();
             vista.mostrarMensaje("El registro se agrego correctamente", "Registro exitoso");
         }catch(Exception ex){
