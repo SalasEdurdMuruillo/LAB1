@@ -6,6 +6,9 @@ package Vista;
 
 import Controlador.ControladorClientes;
 import Modelo.Cliente;
+import Modelo.ClienteRegular;
+import Modelo.ClienteVIP;
+import Modelo.FabricaCliente;
 import Modelo.ServicioClientes;
 import Vista.IVista;
 import Vista.UtilGui;
@@ -273,6 +276,12 @@ public class FrmClientes extends javax.swing.JInternalFrame implements IVista<Cl
         String telefono = txtTelefono.getText();
         telefono = telefono.trim().replace(" ", "");
         boolean esPreferente = jCheckBox1.isSelected();
+        FabricaCliente fabrica;
+        if (esPreferente) {
+            fabrica = new ClienteVIP();
+        } else {
+            fabrica = new ClienteRegular();
+        }
         controlador.guardar(id,nombre,correo,telefono,esPreferente);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -349,6 +358,7 @@ public class FrmClientes extends javax.swing.JInternalFrame implements IVista<Cl
     public void cambiarEstadoCampos(boolean estado){
         this.txtCedula.setEditable(estado);
         this.txtNombre.setEditable(estado);
+        this.jCheckBox1.setEnabled(estado);
     }
         
     @Override
