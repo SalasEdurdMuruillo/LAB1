@@ -99,8 +99,4 @@ public class ServicioClientes {
         validarRequeridos(correo,telefono);
         return !(cliente.getCorreo().equals(correo) && cliente.getTelefono().equals(telefono)&& cliente.getPreferente()==preferente);
     }
-
-    public void guardar(String id, String nombre, String correo, String telefono, boolean preferente) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }
