@@ -20,9 +20,10 @@ public class IFrmMovimientos extends javax.swing.JInternalFrame {
     /**
      * Creates new form IFrmMovimientos
      */
-    public IFrmMovimientos() {
+    public IFrmMovimientos(ServicioCuentas servicio) {
         initComponents();
         servicioCuentas = new ServicioCuentas(new GestorCuentasMem(), new FabricaCuentaColones());
+        this.servicioCuentas = servicioCuentas;
         txtMovi.addItem("Depositar");
         txtMovi.addItem("Retirar");
         txtMovi.addItem("Transferir");

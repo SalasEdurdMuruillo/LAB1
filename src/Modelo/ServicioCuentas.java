@@ -67,4 +67,8 @@ public class ServicioCuentas {
     public Cuenta buscar(String numeroCuenta) {
         return gestor.buscar(numeroCuenta);
     }
+
+    public void crearCuenta(Cliente titular, String numeroCuenta) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

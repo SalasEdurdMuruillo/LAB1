@@ -12,6 +12,7 @@ import java.util.Objects;
  */
 public class Cuenta {
     private final String numeroCuenta;
+    private String nombreCliente;
     private final Cliente titular;
     private double saldo;
     private boolean activa;
@@ -55,5 +56,16 @@ public class Cuenta {
 
     public void setEstado(String estado) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    
+    public CuentaMemento guardarEstado() {
+        return new CuentaMemento(nombreCliente, saldo);
+    }
+
+    
+    public void restaurarEstado(CuentaMemento memento) {
+        this.nombreCliente = memento.getNombreCliente();
+        this.saldo = memento.getSaldo();
     }
 }

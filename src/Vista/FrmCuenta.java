@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 public class FrmCuenta extends javax.swing.JInternalFrame {
     private final GestorCuentasMem gestor = new GestorCuentasMem();
     Cliente titular;
+    private ServicioCuentas servicioCuentas;
     /**
      * Creates new form FrmCuenta
      */
@@ -28,6 +29,8 @@ public class FrmCuenta extends javax.swing.JInternalFrame {
         initComponents();
         cargarMonedas();
         cargarEstados();
+        FabricaCuenta fabrica = new FabricaCuentaColones(); 
+        servicioCuentas = new ServicioCuentas(gestor, fabrica);
     }
     private void cargarMonedas() { 
         for (Moneda moneda : Moneda.values()) {
@@ -180,7 +183,6 @@ public class FrmCuenta extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI Emoji", 3, 14)); // NOI18N
         jLabel4.setText("Moneda");
 
-        txtMoneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Colones", "Dolares" }));
         txtMoneda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMonedaActionPerformed(evt);
@@ -336,6 +338,9 @@ public class FrmCuenta extends javax.swing.JInternalFrame {
         }
         
         ServicioCuentas serviciocuentas = new ServicioCuentas(new GestorCuentasMem(), fabrica);
+
+        Cuenta cuenta = leerFormulario();
+        servicioCuentas.crearCuenta(cuenta.getTitular(), cuenta.getNumeroCuenta());
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
@@ -363,7 +368,8 @@ public class FrmCuenta extends javax.swing.JInternalFrame {
                 return; 
             }
         }
-        frm = new IFrmMovimientos();
+            
+        frm = new IFrmMovimientos(servicioCuentas);
         dp.add(frm);
         frm.setVisible(true);
     } else {
